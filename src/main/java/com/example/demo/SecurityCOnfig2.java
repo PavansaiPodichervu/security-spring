@@ -12,10 +12,12 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityCOnfig2 {
+	// inmermory userdetails configuration example
 	@Bean
 	public SecurityFilterChain getFilterChain(HttpSecurity http) throws Exception {
-		return http.csrf(cutomizer -> Customizer.withDefaults())
-				.authorizeHttpRequests(request -> request.anyRequest().authenticated())
+		return http
+//				.csrf(cutomizer -> Customizer.withDefaults())
+				.csrf(csrf -> csrf.disable()).authorizeHttpRequests(request -> request.anyRequest().authenticated())
 				.formLogin(Customizer.withDefaults()).httpBasic(Customizer.withDefaults()).build();
 	}
 
